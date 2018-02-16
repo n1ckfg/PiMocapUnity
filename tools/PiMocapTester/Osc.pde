@@ -16,16 +16,18 @@ void oscSetup() {
 void sendOsc() {
   OscMessage myMessage;
 
-  myMessage = new OscMessage("/pos");
-  //myMessage.add((mouseX-pmouseX) * (destWidth/width));
-  //myMessage.add((mouseY-pmouseY) * (destHeight/height));
-  //myMessage.add(clicked);
+  myMessage = new OscMessage("/blob");
+  myMessage.add("nfgRPi1");
+  myMessage.add(1);
+  myMessage.add(Dot1.p.x / width);
+  myMessage.add(Dot1.p.y / height);
   oscP5.send(myMessage, myRemoteLocation);
   
-  myMessage = new OscMessage("/pos");
-  //myMessage.add((mouseX-pmouseX) * (destWidth/width));
-  //myMessage.add((mouseY-pmouseY) * (destHeight/height));
-  //myMessage.add(clicked);
+  myMessage = new OscMessage("/blob");
+  myMessage.add("nfgRPi2");
+  myMessage.add(1);
+  myMessage.add(Dot2.p.x / width);
+  myMessage.add(Dot2.p.y / height);
   oscP5.send(myMessage, myRemoteLocation);
 } 
 
