@@ -17,9 +17,15 @@ void sendOsc() {
   OscMessage myMessage;
 
   myMessage = new OscMessage("/pos");
-  myMessage.add((mouseX-pmouseX) * (destWidth/width));
-  myMessage.add((mouseY-pmouseY) * (destHeight/height));
-  myMessage.add(clicked);
+  //myMessage.add((mouseX-pmouseX) * (destWidth/width));
+  //myMessage.add((mouseY-pmouseY) * (destHeight/height));
+  //myMessage.add(clicked);
+  oscP5.send(myMessage, myRemoteLocation);
+  
+  myMessage = new OscMessage("/pos");
+  //myMessage.add((mouseX-pmouseX) * (destWidth/width));
+  //myMessage.add((mouseY-pmouseY) * (destHeight/height));
+  //myMessage.add(clicked);
   oscP5.send(myMessage, myRemoteLocation);
 } 
 

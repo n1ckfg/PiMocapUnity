@@ -15,22 +15,7 @@ void draw() {
     Dot2.p.add(getMouseDelta());
   }
   
-  if (keyPressed) {
-    if (key == 'w') {
-      Dot1.p.x += offset;
-      Dot2.p.x -= offset;
-      offset++;
-      Dot1.p.x -= offset;
-      Dot2.p.x += offset;
-    } else if (key == 's') {
-      Dot1.p.x += offset;
-      Dot2.p.x -= offset;
-      offset--;
-      if (offset < 0) offset = 0;
-      Dot1.p.x -= offset;
-      Dot2.p.x += offset;      
-    }
-  }
+  controlsUpdate();
   
   stroke(63);
   strokeWeight(1);
