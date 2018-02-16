@@ -53,39 +53,39 @@ void keyReleased() {
 
 void controlsUpdate() {
   if (moveForward) {
-    Dot1.p.x += offset;
-    Dot2.p.x -= offset;
+    dot1.p.x += offset;
+    dot2.p.x -= offset;
     offset++;
-    Dot1.p.x -= offset;
-    Dot2.p.x += offset;
+    dot1.p.x -= offset;
+    dot2.p.x += offset;
   }
   
   if (moveBack) {
-    Dot1.p.x += offset;
-    Dot2.p.x -= offset;
+    dot1.p.x += offset;
+    dot2.p.x -= offset;
     offset--;
     if (offset < 0) offset = 0;
-    Dot1.p.x -= offset;
-    Dot2.p.x += offset;      
+    dot1.p.x -= offset;
+    dot2.p.x += offset;      
   }
   
   if (moveLeft) {
-    Dot1.p.x--;
-    Dot2.p.x--;
+    dot1.p.x--;
+    dot2.p.x--;
   }
   
   if (moveRight) {
-    Dot1.p.x++;
-    Dot2.p.x++;
+    dot1.p.x++;
+    dot2.p.x++;
   }
   
   if (moveDown) {
-    Dot1.p.y++;
-    Dot2.p.y++;
+    dot1.p.y++;
+    dot2.p.y++;
   }
   
   if (moveUp) {
-    Dot1.p.y--;
-    Dot2.p.y--;
+    dot1.p.y--;
+    dot2.p.y--;
   }
 }

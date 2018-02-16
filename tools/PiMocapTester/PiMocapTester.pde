@@ -1,46 +1,46 @@
-CircleButton Dot1, Dot2;
+CircleButton dot1, dot2;
 int buttonSize = 20;
 float offset = 20;
 
 void setup() {
   size(1280, 480, P3D);
   oscSetup();
-  Dot1 = new CircleButton((width/4) - offset, height/2, buttonSize);
-  Dot2 = new CircleButton((3 * (width/4) + offset), height/2, buttonSize);
+  dot1 = new CircleButton((width/4) - offset, height/2, buttonSize);
+  dot2 = new CircleButton((3 * (width/4) + offset), height/2, buttonSize);
 }
 
 void draw() {
   blendMode(NORMAL);
   background(0);
-  if (Dot1.clicked || Dot2.clicked) {
-    Dot1.p.add(getMouseDelta());
-    Dot2.p.add(getMouseDelta());
+  if (dot1.clicked || dot2.clicked) {
+    dot1.p.add(getMouseDelta());
+    dot2.p.add(getMouseDelta());
   }
   
   controlsUpdate();
   
   stroke(63);
   strokeWeight(1);
-  line(0, Dot1.p.y, Dot1.p.x, Dot1.p.y);
-  line(Dot1.p.x, 0, Dot1.p.x, Dot1.p.y);
-  line(width, Dot2.p.y, Dot2.p.x, Dot2.p.y);
-  line(Dot2.p.x, height, Dot2.p.x, Dot2.p.y);
+  line(0, dot1.p.y, dot1.p.x, dot1.p.y);
+  line(dot1.p.x, 0, dot1.p.x, dot1.p.y);
+  line(width, dot2.p.y, dot2.p.x, dot2.p.y);
+  line(dot2.p.x, height, dot2.p.x, dot2.p.y);
 
   stroke(255);
   strokeWeight(2);
-  line(Dot2.p.x, Dot2.p.y, Dot1.p.x + width/2, Dot1.p.y);
-  line(Dot1.p.x, Dot1.p.y, Dot2.p.x - width/2, Dot2.p.y);
+  line(dot2.p.x, dot2.p.y, dot1.p.x + width/2, dot1.p.y);
+  line(dot1.p.x, dot1.p.y, dot2.p.x - width/2, dot2.p.y);
 
   strokeWeight(8);
   stroke(0,127,255);
-  point(Dot1.p.x + width/2, Dot1.p.y);
+  point(dot1.p.x + width/2, dot1.p.y);
   stroke(255,63,0);
-  point(Dot2.p.x - width/2, Dot2.p.y);
+  point(dot2.p.x - width/2, dot2.p.y);
   
   stroke(255);
   strokeWeight(2);
-  Dot1.run();
-  Dot2.run();
+  dot1.run();
+  dot2.run();
   sendOsc();
   
   blendMode(ADD);
@@ -58,9 +58,9 @@ void draw() {
   fill(140);
   lights();
   pushMatrix();
-  float x = (Dot1.p.x + Dot2.p.x)/2;
-  float y = (Dot1.p.y + Dot2.p.y)/2;
-  float z = dist(Dot1.p.x, Dot1.p.y, Dot2.p.x - (width/2), Dot2.p.y);
+  float x = (dot1.p.x + dot2.p.x)/2;
+  float y = (dot1.p.y + dot2.p.y)/2;
+  float z = dist(dot1.p.x, dot1.p.y, dot2.p.x - (width/2), dot2.p.y);
   translate(x, y, z);
   sphere(buttonSize/1.6);
   popMatrix();

@@ -87,9 +87,13 @@ public class OscControl : MonoBehaviour {
         if (pckt == null) { Debug.Log("Empty packet"); return; }
 
 		OSCMessage msg = pckt.Data[0] as UnityOSC.OSCMessage;
-		pos = new Vector2((float) msg.Data[2], (float) msg.Data[3]);
-		pos.x = -pos.x;
-		Debug.Log(msg.Data[0] + ", " + msg.Data[1] + ", " + msg.Data[2] + ", " + msg.Data[3] + ", " + msg.Data[4]);
+        //pos = new Vector2((float) msg.Data[2], (float) msg.Data[3]);
+        //pos.x = -pos.x;
+        //Debug.Log(msg.Data[0] + ", " + msg.Data[1] + ", " + msg.Data[2] + ", " + msg.Data[3] + ", " + msg.Data[4]);
+
+        pos = new Vector3((float) pckt.Data[2], (float) pckt.Data[3], 0f);
+        pos.x = -pos.x;
+        Debug.Log(pos);
 
 		/*
         // Origin
