@@ -43,7 +43,7 @@ void draw() {
   strokeWeight(2);
   dot1.run();
   dot2.run();
-  sendOsc();
+  //sendOsc();
   
   blendMode(ADD);
   noStroke();
