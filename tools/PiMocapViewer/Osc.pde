@@ -40,9 +40,9 @@ void oscEvent(OscMessage msg) {
     println(msg.get(0).stringValue() + " " + msg.get(1).intValue() + " " + msg.get(2).floatValue() + " " + msg.get(3).floatValue());
     
     if (msg.get(0).stringValue().equals(hostName1)) {
-      dot1.p = new PVector(msg.get(2).floatValue(), msg.get(3).floatValue());
+      dot1.p = new PVector(msg.get(2).floatValue() * width, msg.get(3).floatValue() * height);
     } else if (msg.get(0).stringValue().equals(hostName2)) {
-      dot2.p = new PVector(msg.get(2).floatValue() + (width/2), msg.get(3).floatValue());
+      dot2.p = new PVector(msg.get(2).floatValue() * width + (width/2), msg.get(3).floatValue() * height);
     }
   }
 }

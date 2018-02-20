@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18385518, g: 0.22864726, b: 0.3010516, a: 1}
+  m_IndirectSpecularColor: {r: 0.18385473, g: 0.22864658, b: 0.3010509, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -162,9 +162,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oscMode: 1
+  msgMode: 1
   outIP: 127.0.0.1
   outPort: 9998
-  inPort: 9999
+  inPort: 7110
   bufferSize: 100
   rxBufferSize: 1024
   sleepMs: 10
