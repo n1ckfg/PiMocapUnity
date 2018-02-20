@@ -7,8 +7,8 @@ int receivePort = 7110;
 OscP5 oscP5;
 NetAddress myRemoteLocation;
 
-String hostName1 = "a";
-String hostName2 = "b";
+String hostName1 = "RPi_180219175326360";
+String hostName2 = "RPi_180219180801264";
 
 void oscSetup() {
   oscP5 = new OscP5(this, receivePort);
@@ -38,11 +38,11 @@ void sendOsc() {
 void oscEvent(OscMessage msg) {
   if (msg.checkAddrPattern("/blob") && msg.checkTypetag("siff")) {
     println(msg.get(0).stringValue() + " " + msg.get(1).intValue() + " " + msg.get(2).floatValue() + " " + msg.get(3).floatValue());
-
+    
     if (msg.get(0).stringValue().equals(hostName1)) {
-      dot1.p = new PVector(msg.get(2).floatValue() * (width/2), msg.get(3).floatValue() * height);
+      dot1.p = new PVector(msg.get(2).floatValue(), msg.get(3).floatValue());
     } else if (msg.get(0).stringValue().equals(hostName2)) {
-      dot2.p = new PVector(msg.get(2).floatValue() * (width/2) + (width/2), msg.get(3).floatValue() * height);
+      dot2.p = new PVector(msg.get(2).floatValue() + (width/2), msg.get(3).floatValue());
     }
   }
 }
