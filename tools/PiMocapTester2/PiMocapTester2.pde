@@ -7,7 +7,7 @@ boolean birth = true;
 void setup() {
   size(640, 480, P3D);
   oscSetup();
-  
+
   dots = new ArrayList<AutoDot>();
   for (int i=0; i<numDots; i++) {
     dots.add(new AutoDot(i));
@@ -15,8 +15,10 @@ void setup() {
 }
 
 void draw() {
+  blendMode(NORMAL);
   background(0);
-
+  
+  blendMode(ADD);
   for (int i=0; i<dots.size(); i++) {
     AutoDot dot = dots.get(i);
     dot.index = i;
