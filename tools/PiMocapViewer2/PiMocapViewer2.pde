@@ -2,10 +2,13 @@ int maxDots = 100;
 PVector[] dot1 = new PVector[maxDots];
 PVector[] dot2 = new PVector[maxDots];
 float dotSize = 20;
+ArrayList<Stroke> strokes;
 
 void setup() {
   size(1280, 480, P3D);
   oscSetup();
+  strokes = new ArrayList<Stroke>();
+  strokes.add(new Stroke());
 }
 
 void draw() {
@@ -69,9 +72,15 @@ void draw() {
       float x = (dot1[i].x + dot2[i].x)/2;
       float y = (dot1[i].y + dot2[i].y)/2;
       float z = dist(dot1[i].x, dot1[i].y, dot2[i].x, dot2[i].y);
+      if (i==0) strokes.get(0).points.add(new PVector(x, y, z));
       translate(x, y, z);
       sphere(dotSize/1.6);
       popMatrix();
     }
+  }
+  
+  
+  for (int i=0; i<strokes.size(); i++) {
+    strokes.get(i).run();
   }
 }
