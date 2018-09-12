@@ -10,15 +10,17 @@ class AutoDot {
   float speed;
   boolean alive;
   float fake3Doffset;
+  int index;
   
-  AutoDot() {
+  AutoDot(int _index) {
     init();
     p = new PVector(random(width), random(height));
     birthTime = millis();
     lifeTime = birthTime + int(random(3000, 6000));
     speed = random(0.005, 0.01);  
     alive = true;
-    fake3Doffset = random(5, 30);
+    fake3Doffset = random(5, 100);
+    index = _index;
   }
 
   void init() {
@@ -40,14 +42,14 @@ class AutoDot {
   
     myMessage = new OscMessage("/blob");
     myMessage.add(hostName1);
-    myMessage.add(0);
+    myMessage.add(index);
     myMessage.add(p.x / width);
     myMessage.add(p.y / height);
     oscP5.send(myMessage, myRemoteLocation);
 
     myMessage = new OscMessage("/blob");
     myMessage.add(hostName2);
-    myMessage.add(0);
+    myMessage.add(index);
     myMessage.add((p.x + fake3Doffset) / width);
     myMessage.add(p.y / height);
     oscP5.send(myMessage, myRemoteLocation);

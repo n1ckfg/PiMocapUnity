@@ -15,34 +15,21 @@ void oscSetup() {
   myRemoteLocation = new NetAddress(ipNumber, sendPort);
 }
 
-// Send message example
-void sendOsc() {
-  OscMessage myMessage;
-
-  myMessage = new OscMessage("/blob");
-  myMessage.add(hostName1);
-  myMessage.add(1);
-  myMessage.add(dot1.p.x / width);
-  myMessage.add(dot1.p.y / height);
-  oscP5.send(myMessage, myRemoteLocation);
-  
-  myMessage = new OscMessage("/blob");
-  myMessage.add(hostName2);
-  myMessage.add(1);
-  myMessage.add(dot2.p.x / width);
-  myMessage.add(dot2.p.y / height);
-  oscP5.send(myMessage, myRemoteLocation);
-} 
-
 // Receive message example
 void oscEvent(OscMessage msg) {
   if (msg.checkAddrPattern("/blob") && msg.checkTypetag("siff")) {
-    println(msg.get(0).stringValue() + " " + msg.get(1).intValue() + " " + msg.get(2).floatValue() + " " + msg.get(3).floatValue());
+    
+    String hostname = msg.get(0).stringValue();
+    int index = msg.get(1).intValue();
+    float x = msg.get(2).floatValue();
+    float y =  msg.get(3).floatValue();
+    
+    println(hostname + " " + index + " " + x + " " + y);
     
     if (msg.get(0).stringValue().equals(hostName1)) {
-      dot1.p = new PVector(msg.get(2).floatValue() * width, msg.get(3).floatValue() * height);
+      dot1[index] = new PVector(msg.get(2).floatValue() * (width/2), msg.get(3).floatValue() * height);
     } else if (msg.get(0).stringValue().equals(hostName2)) {
-      dot2.p = new PVector(msg.get(2).floatValue() * width + (width/2), msg.get(3).floatValue() * height);
+      dot2[index] = new PVector(msg.get(2).floatValue() * (width/2), msg.get(3).floatValue() * height);
     }
   }
 }

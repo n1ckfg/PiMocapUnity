@@ -14,29 +14,3 @@ void oscSetup() {
   oscP5 = new OscP5(this, receivePort);
   myRemoteLocation = new NetAddress(ipNumber, sendPort);
 }
-
-// Send message example
-void sendOsc() {
-  OscMessage myMessage;
-
-  myMessage = new OscMessage("/blob");
-  myMessage.add(hostName1);
-  myMessage.add(0);
-  myMessage.add(1 / (width/2));
-  myMessage.add(1 / height);
-  oscP5.send(myMessage, myRemoteLocation);
-  
-  myMessage = new OscMessage("/blob");
-  myMessage.add(hostName2);
-  myMessage.add(0);
-  myMessage.add((1 - (width/2)) / (width/2));
-  myMessage.add(1 / height);
-  oscP5.send(myMessage, myRemoteLocation);
-} 
-
-// Receive message example
-void oscEvent(OscMessage msg) {
-  if (msg.checkAddrPattern("/pos") && msg.checkTypetag("f")) {
-    //
-  }
-}
