@@ -88,7 +88,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 46402172fa13dfa49845aa7f514cd7ce, type: 2}
+  - {fileID: 2100000, guid: a7bdea88039914e009d74a4bd563f083, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,7 +131,7 @@ TrailRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 62e15720b7e9f284689d70adb16b9894, type: 2}
+  - {fileID: 2100000, guid: a7bdea88039914e009d74a4bd563f083, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -227,6 +227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b51274bcc6d78440b5bf65385ea79b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: []
+  point_life: 1
+  aliveCounter: 0
 --- !u!135 &135474336277772112
 SphereCollider:
   m_ObjectHideFlags: 1
