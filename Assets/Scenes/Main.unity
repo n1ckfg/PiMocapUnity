@@ -128,7 +128,6 @@ GameObject:
   - component: {fileID: 240660117}
   - component: {fileID: 240660116}
   - component: {fileID: 240660115}
-  - component: {fileID: 240660118}
   m_Layer: 0
   m_Name: OSC
   m_TagString: Untagged
@@ -142,7 +141,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 240660114}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ef23558a7d0141a198b0e936b5bbb9b, type: 3}
   m_Name: 
@@ -158,19 +157,15 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 240660114}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5034567c1dbcb4b6c8b1321cbfd64b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   oscMode: 1
-  msgMode: 1
   outIP: 127.0.0.1
   outPort: 9998
   inPort: 7110
-  bufferSize: 100
-  rxBufferSize: 1024
-  sleepMs: 10
   pos1: {x: 0, y: 0, z: 0}
   pos2: {x: 0, y: 0, z: 0}
 --- !u!4 &240660117
@@ -186,24 +181,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &240660118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 240660114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48fbad2e583834438b729e0cb50d99b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oscMode: 1
-  outIP: 127.0.0.1
-  outPort: 9999
-  inPort: 7110
-  bufferSize: 100
-  rxBufferSize: 1024
-  sleepMs: 10
 --- !u!1 &348636996
 GameObject:
   m_ObjectHideFlags: 0
