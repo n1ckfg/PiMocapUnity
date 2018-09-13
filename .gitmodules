@@ -1,0 +1,3 @@
+[submodule "UnityOSC"]
+	path = UnityOSC
+	url = https://github.com/n1ckfg/UnityOSC
