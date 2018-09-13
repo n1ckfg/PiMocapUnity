@@ -35,19 +35,24 @@ public class OscControl : MonoBehaviour {
     public int outPort = 9999;
     public int inPort = 9998;
 
+	[HideInInspector] public int maxDots = 100;
+	[HideInInspector] public Vector2[] dot1, dot2;
+	[HideInInspector] public List<string> hostList;
+	[HideInInspector] public int numHosts = 2;
+
 	private OSCServer myServer;
 	private int bufferSize = 100; // Buffer size of the application (stores 100 messages from different servers)
 	private int rxBufferSize = 1024;
 	private int sleepMs = 10;
 
-    [HideInInspector] public Vector3 pos1 = Vector3.zero;
-    [HideInInspector] public Vector3 pos2 = Vector3.zero;
-    private const string name1 = "RPi_180219175326360";
-    private const string name2 = "RPi_180219180801264";
 
     // Script initialization
     void Start() {
-        // init OSC
+		dot1 = new Vector2[maxDots];
+		dot2 = new Vector2[maxDots];
+		hostList = new List<string>();
+
+		// init OSC
         OSCHandler.Instance.Init(); 
 
         // Initialize OSC clients (transmitters)
@@ -92,10 +97,23 @@ public class OscControl : MonoBehaviour {
 			return; 
 		}
 
+		string hostName = (string) pckt.Data[0];
+		int index = (int) pckt.Data[1];
 		float x = (float) pckt.Data[2];
 		float y = (float) pckt.Data[3];
 		float z = 0f;
 
+		if (hostList.Count >= numHosts) {
+			if (hostName == hostList[0]) {
+				dot1[index] = new Vector2(x, y);
+			} else {
+				dot2[index] = new Vector2(x, y);
+			}
+		} else {
+			hostList.Add(hostName);
+		}
+
+		/*
 		switch ((string) pckt.Data[0]) {
 			case (name1):
 				pos1 = new Vector3(x, -y, z);
@@ -104,6 +122,7 @@ public class OscControl : MonoBehaviour {
 				pos2 = new Vector3(x, -y, z);
 				break;
 		}
+		*/
 
         /*
         // Origin

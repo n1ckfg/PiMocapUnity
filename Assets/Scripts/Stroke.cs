@@ -4,12 +4,31 @@ using UnityEngine;
 
 public class Stroke : MonoBehaviour {
 
-    List<SPoint> points;
-    float point_life = 1;
-    float time = 0;
-    Vector3 lastPos = new Vector3(0, 0, 0);
+	[System.Serializable]
+	public struct SPoint {
+		public float x;
+		public float y;
+		public float z;
+		public float timestamp;
 
-    private void Start() {
+		public SPoint(float _x, float _y, float _z, float _timestamp) {
+			x = _x;
+			y = _y;
+			z = _z;
+			timestamp = _timestamp;
+		}
+	}
+
+    public List<SPoint> points;
+	public float point_life = 1;
+
+
+	[HideInInspector] public float aliveCounter = 0f;
+
+	private float time = 0;
+    private Vector3 lastPos = new Vector3(0, 0, 0);
+
+	private void Awake() {
         points = new List<SPoint>();
     }
 
@@ -30,36 +49,24 @@ public class Stroke : MonoBehaviour {
         SPoint p2 = points[points.Count - 1];
         Vector3 pos = new Vector3(p2.x, p2.y, p2.z);
         if (Vector3.Distance(pos, lastPos) > 0.1) {
-            //fill(0, 240, 100);
+			//fill(0, 240, 100);
+			aliveCounter = 0f;
         } else {
-            //fill(140);
+			//fill(140);
+			aliveCounter += Time.deltaTime;
         }
+
+		transform.position = pos;
 
         lastPos = pos;
     }
 
-    void addPoint(float x, float y, float z, float t) {
+    public void addPoint(float x, float y, float z, float t) {
         points.Add(new SPoint(x, y, z, t));
     }
 
-    void addPoint(SPoint point) {
-        points.Add(point);
-    }
-
-}
-
-public class SPoint {
-
-    public float x;
-    public float y;
-    public float z;
-    public float timestamp;
-
-    public SPoint(float _x, float _y, float _z, float _timestamp) {
-        x = _x;
-        y = _y;
-        z = _z;
-        timestamp = _timestamp;
+    public void addPoint(SPoint point) {
+		points.Add(point);
     }
 
 }
