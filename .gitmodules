@@ -1,3 +1,6 @@
 [submodule "Assets/UnityOSC"]
 	path = Assets/UnityOSC
 	url = https://github.com/n1ckfg/UnityOSC
+[submodule "Assets/latkUnity"]
+	path = Assets/latkUnity
+	url = https://github.com/LightningArtist/latkUnity
