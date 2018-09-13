@@ -7,9 +7,6 @@ int receivePort = 7110;
 OscP5 oscP5;
 NetAddress myRemoteLocation;
 
-String hostName1 = "RPi_180219175326360";
-String hostName2 = "RPi_180219180801264";
-
 void oscSetup() {
   oscP5 = new OscP5(this, receivePort);
   myRemoteLocation = new NetAddress(ipNumber, sendPort);
@@ -26,10 +23,14 @@ void oscEvent(OscMessage msg) {
     
     println(hostname + " " + index + " " + x + " " + y);
     
-    if (msg.get(0).stringValue().equals(hostName1)) {
-      dot1[index] = new PVector(msg.get(2).floatValue() * (width/2), msg.get(3).floatValue() * height);
-    } else if (msg.get(0).stringValue().equals(hostName2)) {
-      dot2[index] = new PVector(msg.get(2).floatValue() * (width/2), msg.get(3).floatValue() * height);
+    if (hostList.size() >= numHosts) {
+      if (msg.get(0).stringValue().equals(hostList.get(0))) {
+        dot1[index] = new PVector(msg.get(2).floatValue() * (width/2), msg.get(3).floatValue() * height);
+      } else if (msg.get(0).stringValue().equals(hostList.get(1))) {
+        dot2[index] = new PVector(msg.get(2).floatValue() * (width/2), msg.get(3).floatValue() * height);
+      }
+    } else {
+      hostList.add(msg.get(0).stringValue());
     }
   }
 }

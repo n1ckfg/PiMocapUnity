@@ -8,12 +8,16 @@ PVector[] dot2 = new PVector[maxDots];
 float dotSize = 20;
 ArrayList<Stroke> strokes;
 
+ArrayList<String> hostList;
+int numHosts = 2;
+
 void setup() {
   size(1280, 480, P3D);
   cam =  new PeasyCam(this, width/2, height/2, 400, 50);
 
   oscSetup();
   strokes = new ArrayList<Stroke>();
+  hostList = new ArrayList<String>();
 }
 
 void draw() {
