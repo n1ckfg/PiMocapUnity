@@ -24,13 +24,13 @@ void oscEvent(OscMessage msg) {
     println(hostname + " " + index + " " + x + " " + y);
     
     if (hostList.size() >= numHosts) {
-      if (msg.get(0).stringValue().equals(hostList.get(0))) {
-        dot1[index] = new PVector(msg.get(2).floatValue() * (width/2), msg.get(3).floatValue() * height);
-      } else if (msg.get(0).stringValue().equals(hostList.get(1))) {
-        dot2[index] = new PVector(msg.get(2).floatValue() * (width/2), msg.get(3).floatValue() * height);
+      if (hostname.equals(hostList.get(0))) {
+        dot1[index] = new PVector(x * (width/2), y * height);
+      } else {
+        dot2[index] = new PVector(x * (width/2), y * height);
       }
     } else {
-      hostList.add(msg.get(0).stringValue());
+      hostList.add(hostname);
     }
   }
 }
