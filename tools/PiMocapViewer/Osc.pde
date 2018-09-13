@@ -1,6 +1,12 @@
 import oscP5.*;
 import netP5.*;
 
+int maxDots = 100;
+PVector[] dot1 = new PVector[maxDots];
+PVector[] dot2 = new PVector[maxDots];
+ArrayList<String> hostList;
+int numHosts = 2;
+
 String ipNumber = "127.0.0.1";
 int sendPort = 9998;
 int receivePort = 7110;
@@ -10,6 +16,7 @@ NetAddress myRemoteLocation;
 void oscSetup() {
   oscP5 = new OscP5(this, receivePort);
   myRemoteLocation = new NetAddress(ipNumber, sendPort);
+  hostList = new ArrayList<String>();
 }
 
 // Receive message example

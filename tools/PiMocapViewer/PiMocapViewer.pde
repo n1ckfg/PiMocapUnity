@@ -2,14 +2,8 @@ import peasy.PeasyCam;
 
 PeasyCam cam;
 
-int maxDots = 100;
-PVector[] dot1 = new PVector[maxDots];
-PVector[] dot2 = new PVector[maxDots];
 float dotSize = 20;
 ArrayList<Stroke> strokes;
-
-ArrayList<String> hostList;
-int numHosts = 2;
 
 void setup() {
   size(1280, 480, P3D);
@@ -17,7 +11,6 @@ void setup() {
 
   oscSetup();
   strokes = new ArrayList<Stroke>();
-  hostList = new ArrayList<String>();
 }
 
 void draw() {
