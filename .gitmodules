@@ -7,3 +7,6 @@
 [submodule "Assets/UnityMultiCam"]
 	path = Assets/UnityMultiCam
 	url = https://github.com/n1ckfg/UnityMultiCam
+[submodule "Assets/BasicControls"]
+	path = Assets/BasicControls
+	url = https://github.com/n1ckfg/BasicControls
