@@ -31,7 +31,9 @@ public class OscControl : MonoBehaviour {
 
 	public enum OscMode { SEND, RECEIVE, SEND_RECEIVE };
 	public OscMode oscMode = OscMode.RECEIVE;
-    public string outIP = "127.0.0.1";
+	public enum MsgMode { P5, OF };
+	public MsgMode msgMode = MsgMode.OF;
+	public string outIP = "127.0.0.1";
     public int outPort = 9999;
     public int inPort = 9998;
 
@@ -97,11 +99,27 @@ public class OscControl : MonoBehaviour {
 			return; 
 		}
 
-		string hostName = (string) pckt.Data[0];
-		int index = (int) pckt.Data[1];
-		float x = (float) pckt.Data[2];
-		float y = (float) pckt.Data[3];
-		float z = 0f;
+		string hostName = "";
+		int index = 0;
+		float x = 0f;
+		float y = 0f;
+
+		switch(msgMode) {
+			case (MsgMode.P5):
+				hostName = (string)pckt.Data[0];
+				index = (int)pckt.Data[1];
+				x = (float)pckt.Data[2];
+				y = (float)pckt.Data[3];
+				break;
+			case (MsgMode.OF):
+				OSCMessage msg = pckt.Data[0] as UnityOSC.OSCMessage;
+
+				hostName = (string)msg.Data[0];
+				index = (int)msg.Data[1];
+				x = (float)msg.Data[2];
+				y = (float)msg.Data[3];
+				break;
+		}
 
 		if (hostList.Count >= numHosts) {
 			if (hostName == hostList[0]) {
@@ -112,31 +130,6 @@ public class OscControl : MonoBehaviour {
 		} else {
 			hostList.Add(hostName);
 		}
-
-		/*
-		switch ((string) pckt.Data[0]) {
-			case (name1):
-				pos1 = new Vector3(x, -y, z);
-				break;
-			case (name2):
-				pos2 = new Vector3(x, -y, z);
-				break;
-		}
-		*/
-
-        /*
-        // Origin
-        int serverPort = pckt.server.ServerPort;
-
-        // Address
-        string address = pckt.Address.Substring(1);
-
-        // Data at index 0
-        string data0 = pckt.Data.Count != 0 ? pckt.Data[0].ToString() : "null";
-
-        // Print out messages
-        Debug.Log("Input port: " + serverPort.ToString() + "\nAddress: " + address + "\nData [0]: " + data0);
-		*/
     }
 
 }

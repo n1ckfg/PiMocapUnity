@@ -22,10 +22,10 @@ public class PiMocapReceiver : MonoBehaviour {
 				Vector2 d1 = oscCtl.dot1[i];
 				Vector2 d2 = oscCtl.dot2[i];
 				float x = (d1.x + d2.x) / 2f;
-				x = map(x, 0f, 1f, -scale, scale);
+				x = map(x, 0f, 1f, scale, -scale);
 
 				float y = (d1.y + d2.y) / 2f;
-				y = map(y, 0f, 1f, -scale, scale);
+				y = map(y, 0f, 1f, scale, -scale);
 
 				float z = Vector2.Distance(d1, d2);
 				z = map(z, 0f, 1f, -scale, scale);

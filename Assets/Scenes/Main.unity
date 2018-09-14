@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oscMode: 1
+  msgMode: 1
   outIP: 127.0.0.1
   outPort: 9998
   inPort: 7110
@@ -205,7 +206,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 348636996}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2887d962c0f94460ae9aa20fdd6b16b, type: 3}
   m_Name: 
