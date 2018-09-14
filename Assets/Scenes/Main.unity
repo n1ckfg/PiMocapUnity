@@ -208,7 +208,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 348636996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2887d962c0f94460ae9aa20fdd6b16b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7025bd7dd360d4d6d8a626d779172f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   useKeyboard: 1
@@ -229,10 +229,11 @@ MonoBehaviour:
   isDrawing: 0
   useRaycaster: 1
   followMouse: 1
+  debugRaycaster: 0
   isLooking: 0
   isLookingAt: 
-  isLookingCol: {fileID: 0}
   lastHitPos: {x: 1, y: 1, z: 1}
+  useCollisions: 0
 --- !u!114 &348636998
 MonoBehaviour:
   m_ObjectHideFlags: 0

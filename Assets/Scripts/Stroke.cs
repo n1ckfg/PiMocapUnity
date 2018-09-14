@@ -27,9 +27,11 @@ public class Stroke : MonoBehaviour {
 
 	private float time = 0;
     private Vector3 lastPos = new Vector3(0, 0, 0);
+	private LineRenderer lineRen;
 
 	private void Awake() {
         points = new List<SPoint>();
+		lineRen = GetComponent<LineRenderer>();
     }
 
     private void Update() {
@@ -45,6 +47,12 @@ public class Stroke : MonoBehaviour {
                 }
             }
         }
+
+		 Vector3[] vec = new Vector3[points.Count];
+		for (int i = 0; i < points.Count; i++) {
+			vec[i] = new Vector3(points[i].x, points[i].y, points[i].z);
+		}
+		if (vec.Length > 2) lineRen.SetPositions(vec);
 
         SPoint p2 = points[points.Count - 1];
         Vector3 pos = new Vector3(p2.x, p2.y, p2.z);
