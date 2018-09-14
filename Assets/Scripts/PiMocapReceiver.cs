@@ -36,7 +36,7 @@ public class PiMocapReceiver : MonoBehaviour {
 
 		if (pointsToAdd.Count > strokes.Count) {
 			for (int i = strokes.Count; i < pointsToAdd.Count; i++) {
-				strokes.Add(Instantiate(strokePrefab));
+				strokes.Add(Instantiate(strokePrefab, transform));
 			}
 		}
 

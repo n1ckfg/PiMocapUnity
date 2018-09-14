@@ -2,7 +2,6 @@ ArrayList<AutoDot> dots;
 int numDots = 5;
 float birthOdds = 0.02;
 boolean death = true;
-boolean birth = true;
 
 void setup() {
   size(640, 480, P3D);
@@ -26,5 +25,5 @@ void draw() {
     if (death && !dot.alive) dots.remove(i);
   }
   
-  if (birth && random(1.0) < birthOdds) dots.add(new AutoDot(dots.size()));
+  if (death && random(1.0) < birthOdds) dots.add(new AutoDot(dots.size()));
 }

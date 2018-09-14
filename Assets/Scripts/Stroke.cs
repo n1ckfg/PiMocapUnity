@@ -21,6 +21,8 @@ public class Stroke : MonoBehaviour {
 
     [HideInInspector] public List<SPoint> points;
 	public float point_life = 1;
+    public float spread = 0.2f;
+    public float spreadSmooth = 0.5f;
 
 
 	[HideInInspector] public float aliveCounter = 0f;
@@ -28,6 +30,7 @@ public class Stroke : MonoBehaviour {
 	private float time = 0;
     private Vector3 lastPos = new Vector3(0, 0, 0);
 	private LineRenderer lineRen;
+    private Vector3[] lastPoints;
 
 	private void Awake() {
         points = new List<SPoint>();
@@ -46,18 +49,19 @@ public class Stroke : MonoBehaviour {
         }
 
 		Vector3[] vec = new Vector3[points.Count];
-		for (int i = 0; i < points.Count; i++) {
-			vec[i] = new Vector3(points[i].x, points[i].y, points[i].z);
-		}
-		if (vec.Length > 2) lineRen.SetPositions(vec);
+        for (int i = 0; i < points.Count; i++) {
+            vec[i] = new Vector3(points[i].x + Random.Range(-spread, spread), points[i].y + Random.Range(-spread, spread), points[i].z + Random.Range(-spread, spread));
+            if (lastPoints != null && i < lastPoints.Length) vec[i] = Vector3.Lerp(vec[i], lastPoints[i], spreadSmooth);
+        }
+        lastPoints = vec;
+        lineRen.positionCount = vec.Length;
+		lineRen.SetPositions(vec);
 
         SPoint p2 = points[points.Count - 1];
         Vector3 pos = new Vector3(p2.x, p2.y, p2.z);
         if (Vector3.Distance(pos, lastPos) > 0.1) {
-			//fill(0, 240, 100);
 			aliveCounter = 0f;
         } else {
-			//fill(140);
 			aliveCounter += Time.deltaTime;
         }
 
