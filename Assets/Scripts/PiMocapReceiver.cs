@@ -18,7 +18,7 @@ public class PiMocapReceiver : MonoBehaviour {
 		List<Stroke.SPoint> pointsToAdd = new List<Stroke.SPoint>();
 
 		for (int i = 0; i < oscCtl.maxDots; i++) {
-			if (oscCtl.dot1[i] != null && oscCtl.dot2[i] != null) {
+			if (oscCtl.dot1[i] != Vector2.zero && oscCtl.dot2[i] != Vector2.zero) {
 				Vector2 d1 = oscCtl.dot1[i];
 				Vector2 d2 = oscCtl.dot2[i];
 				float x = (d1.x + d2.x) / 2f;
@@ -40,16 +40,14 @@ public class PiMocapReceiver : MonoBehaviour {
 			}
 		}
 
-		for (int i = 0; i < pointsToAdd.Count; i++) {
-			strokes[i].addPoint(pointsToAdd[i]);
-		}
-
 		for (int i = 0; i < strokes.Count; i++) {
-			if (strokes[i].aliveCounter > 2f) {
+            if (strokes[i].aliveCounter > 2f) {
 				Destroy(strokes[i].gameObject);
 				strokes.RemoveAt(i);
-			}
-		}
+			} else {
+                strokes[i].addPoint(pointsToAdd[i]);
+            }
+        }
     }
 
     private float map(float s, float a1, float a2, float b1, float b2) {

@@ -52,6 +52,11 @@ public class OscControl : MonoBehaviour {
     void Start() {
 		dot1 = new Vector2[maxDots];
 		dot2 = new Vector2[maxDots];
+        for (int i=0; i<maxDots; i++) {
+            dot1[i] = Vector2.zero;
+            dot2[i] = Vector2.zero;
+        }
+
 		hostList = new List<string>();
 
 		// init OSC

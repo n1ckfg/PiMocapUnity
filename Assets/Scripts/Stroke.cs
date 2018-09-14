@@ -19,7 +19,7 @@ public class Stroke : MonoBehaviour {
 		}
 	}
 
-    public List<SPoint> points;
+    [HideInInspector] public List<SPoint> points;
 	public float point_life = 1;
 
 
@@ -39,16 +39,13 @@ public class Stroke : MonoBehaviour {
 
         if (points.Count > 1) {
             for (int i = 0; i < points.Count; i++) {
-                SPoint p1 = points[i];
-                if (time < p1.timestamp + point_life) {
-                    //vertex(p.x, p.y, p.z);
-                } else {
+                if (time > points[i].timestamp + point_life) {
                     points.RemoveAt(i);
                 }
             }
         }
 
-		 Vector3[] vec = new Vector3[points.Count];
+		Vector3[] vec = new Vector3[points.Count];
 		for (int i = 0; i < points.Count; i++) {
 			vec[i] = new Vector3(points[i].x, points[i].y, points[i].z);
 		}
